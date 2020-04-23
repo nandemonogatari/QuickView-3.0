@@ -3,7 +3,7 @@ Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/
 
 Tiny picture viewer application that always stays on top and actually makes transparent regions of images (as well as any pixel with #000000 color) transparent and clickthrough. Similar to [cthrough](http://cthruview.sourceforge.net/) but the actual visible image parts aren't clickthrough and you dont need an extra window open to configure the options (nor does it choke your ram).
 
-I have no idea how and why half of this works. 
+I have no idea how and why half of this works. I do not know if this works outside of Windows
 
 The way the transparency works is it searches for #000000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in black.
 
