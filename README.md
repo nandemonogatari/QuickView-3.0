@@ -8,16 +8,16 @@ Example for Transparent PNG with HideCaption=1:
 
   This is a tiny picture viewer application.
   Easy to use.
-  Supported .bmp,.jpg,.gif,.png picture format.
+  Supported .bmp, .jpg, .gif, .png picture format.
   Unsupported animation gif.
 
 Usage
-
-  1. Picture file (.bmp,.jpg,.gif,.png) drag and drop to this program.
+```
+  1. Picture file (.bmp, .jpg, .gif, .png) drag and drop to this program.
   2. Select the [Open...] menu item from right click pulldown menu.
   3. Give picture file name from command line argument.
      e.g.  > QuickView.exe E:\pic\foo.png
-
+```
 Right click pulldown menu
 ```
   1. [New Window...]   (ctrl+N)
