@@ -12,7 +12,7 @@ The way the transparency works is it searches for #000000 pixels and makes those
 - GIF doesn't work properly yet.
 ```
 
-Example for Transparent PNG with HideCaption=1:
+Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCaption=1):
 
 ![Screenshot](/screenshot.png)
 
