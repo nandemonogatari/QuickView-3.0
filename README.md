@@ -48,7 +48,7 @@ Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCapt
   5. Vertical Flip
   6. Horizontal Flip
   7. Pin
-     Locks it in place so it cant be moved (can still be moved via title bar).
+     Locks it in place so it cant be moved (can still be moved via title bar if enabled).
   8. [Exit]            (Esc)
      Quit the program.
 ```
