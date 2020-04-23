@@ -1,19 +1,18 @@
 # QuickView-2.8-modified
 Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
 
-Tiny picture viewer application that always stays on top and actually makes transparent regions of images (as well as any pixel with #000000 color) transparent and clickthrough. Similar to [cthrough](http://cthruview.sourceforge.net/) but the actual visible image parts aren't clickthrough and you dont need an extra window open to configure the options.
+Tiny picture viewer application that always stays on top and actually makes transparent regions of images (as well as any pixel with #010000 color) transparent and clickthrough. Similar to [cthrough](http://cthruview.sourceforge.net/) but the actual visible image parts aren't clickthrough and you dont need an extra window open to configure the options (nor does it choke your ram).
 
-I have no idea how and why half of this works. 
+I have no idea how and why half of this works. I do not know if this works outside of Windows
 
 The way the transparency works is it searches for #000000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in black.
 
 **Known issues:**
 ```
-- Titlebar only clickable for the leftmost region i still have to fix that, main idea is to use it with HideCaption=1 aka no Titlebar (see init file options below).
 - GIF doesn't work properly yet.
 ```
 
-Example for Transparent PNG with HideCaption=1:
+Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCaption=1):
 
 ![Screenshot](/screenshot.png)
 
@@ -37,7 +36,11 @@ Example for Transparent PNG with HideCaption=1:
      Zoom percentage.
   4. [Transparent...]
      Transparent mode. (0-255)
-  5. [Exit]            (Esc)
+  5. Vertical Flip
+  6. Horizontal Flip
+  7. Pin
+     Locks it in place so it cant be moved (can still be moved via title bar).
+  8. [Exit]            (Esc)
      Quit the program.
 ```
 **Initialize file (QuickView.ini)**
@@ -50,6 +53,7 @@ Example for Transparent PNG with HideCaption=1:
   NoPictureName - Set '1' to only show Title on titlebar.
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
+  Transparency - Set '1' to enable transparent Window.
 ```
 
 **fix_black.py**
