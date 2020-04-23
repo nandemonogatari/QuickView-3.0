@@ -53,13 +53,4 @@ Initialize file (QuickView.ini)
 ```
 License
 
-  Creative Commons Zero(CC0)
-     http://creativecommons.org/publicdomain/zero/1.0/
-
-Copyright
-
-  TPNGImage Copyright (c) Gustavo Huffenbacher Daud
-     http://pngdelphi.sourceforge.net/
-
-  TGIFImage Copyright (c) Finn Tolderlund
-     http://finn.mobilixnet.dk/delphi/
+  [Creative Commons Zero(CC0)](http://creativecommons.org/publicdomain/zero/1.0/)
