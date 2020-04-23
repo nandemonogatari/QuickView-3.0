@@ -51,6 +51,10 @@ Example for Transparent PNG with HideCaption=1:
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
 ```
+
+**Building and modifying**
+If you wanna build and or edit yourself i've been using the [Delphi IDE](https://www.embarcadero.com/products/delphi/starter). Just open the .proj files with that.
+
 **License**
 
   [Creative Commons Zero(CC0)](http://creativecommons.org/publicdomain/zero/1.0/)
