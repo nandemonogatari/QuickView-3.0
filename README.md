@@ -41,17 +41,6 @@ Initialize file (QuickView.ini)
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
 
-Download
-
-  See this site.
-     http://jundai.deviantart.com/art/QuickView-129693435
-
-  Get executable package from this link.
-     https://www.dropbox.com/s/3kl7nufyns89ain/QuickView-2.8.zip?dl=0
-
-  Get source code from this link.
-     https://www.dropbox.com/s/yarwl4uj7fg6vym/QuickView-2.8-src.zip?dl=0
-
 License
 
   Creative Commons Zero(CC0)
