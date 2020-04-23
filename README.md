@@ -7,7 +7,7 @@ I have no idea how and why half of this works.
 
 The way the transparency works is it searches for #000000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in black.
 
-Known issues:
+**Known issues:**
 ```
 - Titlebar only clickable for the leftmost region i still have to fix that, main idea is to use it with HideCaption=1 aka no Titlebar (see init file options below).
 - GIF doesn't work properly yet.
