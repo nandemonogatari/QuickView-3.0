@@ -36,7 +36,11 @@ Example for Transparent PNG with HideCaption=1:
      Zoom percentage.
   4. [Transparent...]
      Transparent mode. (0-255)
-  5. [Exit]            (Esc)
+  5. Vertical Flip
+  6. Horizontal Flip
+  7. Pin
+     Locks it in place so it cant be moved (can still be moved via title bar).
+  8. [Exit]            (Esc)
      Quit the program.
 ```
 **Initialize file (QuickView.ini)**
@@ -49,6 +53,7 @@ Example for Transparent PNG with HideCaption=1:
   NoPictureName - Set '1' to only show Title on titlebar.
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
+  Transparency - Set '1' to enable transparent Window.
 ```
 
 **fix_black.py**
