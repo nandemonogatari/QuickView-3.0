@@ -1,7 +1,7 @@
 //
 // QuickView - simple picture viewer.
 //
-// version 2.9 2020/04/23 nandemonogatari(https://github.com/nandemonogatari)
+// version 3.0 2020/04/23 nandemonogatari(https://github.com/nandemonogatari)
 //
 // from version 2.8  2012/12/25 Jundai(http://jundai.deviantart.com)
 //
@@ -72,10 +72,10 @@ type
       Y: Integer);
   protected
     procedure CreateParams(var Params: TCreateParams); override;
-    //ƒhƒ‰ƒbƒO•ƒhƒƒbƒvˆ—
+    //ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—å‡¦ç†
     procedure WMDropFiles(var Msg : TWMDROPFILES);  message WM_DROPFILES;
   private
-    { Private éŒ¾ }
+    { Private å®£è¨€ }
     fSS_Dir           : String;
     fSS_Handle        : THandle;
 
@@ -98,10 +98,10 @@ type
     procedure ReadProperties;
     function LoadFile(FileName: String): Boolean;
   public
-    { Public éŒ¾ }
+    { Public å®£è¨€ }
   end;
 
-{ƒtƒHƒ‹ƒ_‚ÌQÆƒ_ƒCƒAƒƒO—pƒR[ƒ‹ƒoƒbƒNŠÖ”}
+{ãƒ•ã‚©ãƒ«ãƒ€ã®å‚ç…§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°}
 function BrowseCallback(hWnd: HWND; uMsg: UINT; lParam: LPARAM; lpData: LPARAM): integer; stdcall; export;
 function OpenFolderDialog(var FolderPath: string):Boolean;
 
@@ -120,18 +120,18 @@ implementation
 
 {$R *.DFM}
 
- {ƒtƒHƒ‹ƒ_‚ÌQÆƒ_ƒCƒAƒƒO—pƒR[ƒ‹ƒoƒbƒNŠÖ”}
+ {ãƒ•ã‚©ãƒ«ãƒ€ã®å‚ç…§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°}
 function BrowseCallback(hWnd: HWND; uMsg: UINT; lParam, lpData: LPARAM):integer;
 var
   PathName: array[0..MAX_PATH] of Char;
 begin
   Result := 0;
   case uMsg of
-    {Å‰‚É•\¦‚·‚éƒtƒHƒ‹ƒ_}
+    {æœ€åˆã«è¡¨ç¤ºã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€}
     BFFM_INITIALIZED:begin
       SendMessage(hWnd, BFFM_SETSELECTION,1,LongInt(lpData));
     end;
-    {ƒtƒHƒ‹ƒ_QÆ‚ÉƒpƒX‚ğ•\¦}
+    {ãƒ•ã‚©ãƒ«ãƒ€å‚ç…§æ™‚ã«ãƒ‘ã‚¹ã‚’è¡¨ç¤º}
     BFFM_SELCHANGED:begin
       SHGetPathFromIDList(PItemIDList(lParam), PathName);
       SendMessage(hWnd, BFFM_SETSTATUSTEXT, 0, LongInt(@PathName));
@@ -140,7 +140,7 @@ begin
 end;
 
 
-{ƒtƒHƒ‹ƒ_QÆƒ_ƒCƒAƒƒO‚ğŠJ‚­}
+{ãƒ•ã‚©ãƒ«ãƒ€å‚ç…§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã}
 function OpenFolderDialog(var FolderPath: string): Boolean;
 var
   Malloc: IMalloc;
@@ -151,28 +151,28 @@ var
 begin
   Result := False;
   if Succeeded(SHGetMalloc(Malloc)) then
-  begin //IMalloc‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚Å‚«‚½‚ç
-    pFolderPath := pChar(FolderPath); //‰ŠúƒtƒHƒ‹ƒ_w’è—p
+  begin //IMallocã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã§ããŸã‚‰
+    pFolderPath := pChar(FolderPath); //åˆæœŸãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®šç”¨
 
-    {BrowseInfo\‘¢‘Ì‚ğ‰Šú‰»}
+    {BrowseInfoæ§‹é€ ä½“ã‚’åˆæœŸåŒ–}
     with BrowseInfo do
     begin
       hwndOwner := GetForegroundWindow();
       pidlRoot := nil;
-      pszDisplayName := DisplayPath;  //•\¦–¼—pƒoƒbƒtƒ@
-      lpszTitle := 'ƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢B';
-      //’Êí‚ÌƒtƒHƒ‹ƒ_‚Ì‚İQÆ‰Â”\i“ÁêƒtƒHƒ‹ƒ_‚ÍQÆ‚Å‚«‚È‚¢j
+      pszDisplayName := DisplayPath;  //è¡¨ç¤ºåç”¨ãƒãƒƒãƒ•ã‚¡
+      lpszTitle := 'ãƒ•ã‚©ãƒ«ãƒ€ã‚’é¸æŠã—ã¦ä¸‹ã•ã„ã€‚';
+      //é€šå¸¸ã®ãƒ•ã‚©ãƒ«ãƒ€ã®ã¿å‚ç…§å¯èƒ½ï¼ˆç‰¹æ®Šãƒ•ã‚©ãƒ«ãƒ€ã¯å‚ç…§ã§ããªã„ï¼‰
       ulFlags := BIF_RETURNONLYFSDIRS or BIF_STATUSTEXT;
-      lpfn := @BrowseCallback; //ƒR[ƒ‹ƒoƒbƒNŠÖ”w’è
-      lParam := LongInt(pFolderPath); //‰ŠúƒtƒHƒ‹ƒ_w’è
+      lpfn := @BrowseCallback; //ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°æŒ‡å®š
+      lParam := LongInt(pFolderPath); //åˆæœŸãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®š
       iImage := 0;
     end;
 
-    IDList := SHBrowseForFolder(BrowseInfo);//ƒtƒHƒ‹ƒ_QÆƒ_ƒCƒAƒƒO‚ğ•\¦
-    if IDList<>nil then begin //’l‚ª•Ô‚Á‚Ä‚«‚½‚ç
-      Buffer := Malloc.Alloc(MAX_PATH); //ƒtƒHƒ‹ƒ_ƒpƒXæ“¾—pƒoƒbƒtƒ@
+    IDList := SHBrowseForFolder(BrowseInfo);//ãƒ•ã‚©ãƒ«ãƒ€å‚ç…§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
+    if IDList<>nil then begin //å€¤ãŒè¿”ã£ã¦ããŸã‚‰
+      Buffer := Malloc.Alloc(MAX_PATH); //ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹å–å¾—ç”¨ãƒãƒƒãƒ•ã‚¡
       try
-        SHGetPathFromIDList(IDList, Buffer);//ƒtƒHƒ‹ƒ_ƒpƒX‚ğæ“¾
+        SHGetPathFromIDList(IDList, Buffer);//ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹ã‚’å–å¾—
         FolderPath := String(Buffer);
       finally
         Malloc.Free(Buffer);
@@ -186,31 +186,31 @@ end;
 procedure TFMain.CreateParams(var Params: TCreateParams);
 begin
   inherited CreateParams(Params);
-  //ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‰Â”\‚É‚·‚é
+  //ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—å¯èƒ½ã«ã™ã‚‹
   Params.ExStyle := Params.EXStyle + WS_EX_ACCEPTFILES;
-  //”¼“§–¾‰»‰Â”\‚É‚·‚é
+  //åŠé€æ˜åŒ–å¯èƒ½ã«ã™ã‚‹
   //Params.ExStyle := Params.EXStyle + WS_EX_LAYERED;
 end;
 
 procedure TFMain.WMDropFiles(var Msg : TWMDROPFILES);
 var
-  DropFileName  : array[0..MAX_PATH] of Char;         //ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼
-  FileCnt       : Integer;                            //ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹”
+  DropFileName  : array[0..MAX_PATH] of Char;         //ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«å
+  FileCnt       : Integer;                            //ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«æ•°
   FullName      : array[0..MAX_PATH] of Char;
   F             : PChar;
   ErrMsg        : String;
 begin
-  //ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹”‚ğ“¾‚é
+  //ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’å¾—ã‚‹
   FileCnt := DragQueryFile(Msg.Drop, $FFFFFFFF, DropFileName, SizeOf(DropFileName));
-  //ƒhƒƒbƒv‚³‚ê‚½ÅŒã‚Ìƒtƒ@ƒCƒ‹–¼‚ğ“¾‚é
+  //ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸæœ€å¾Œã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å¾—ã‚‹
   DragQueryFile(Msg.Drop, (FileCnt - 1), DropFileName, SizeOf(DropFileName));
-  //ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚ÌƒNƒGƒŠ‚ğ•Â‚¶‚é
+  //ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã®ã‚¯ã‚¨ãƒªã‚’é–‰ã˜ã‚‹
   DragFinish(Msg.Drop);
 
   GetFullPathName(DropFileName, MAX_PATH, FullName, F);
   if not(FileExists(FullName)) then begin
-    ErrMsg := FullName + ' ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ';
-    Application.MessageBox(PChar(ErrMsg), 'ƒGƒ‰[', (MB_OK or MB_APPLMODAL or MB_ICONSTOP));
+    ErrMsg := FullName + ' ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“';
+    Application.MessageBox(PChar(ErrMsg), 'ã‚¨ãƒ©ãƒ¼', (MB_OK or MB_APPLMODAL or MB_ICONSTOP));
     Exit;
   end;
   LoadFile(FullName);
