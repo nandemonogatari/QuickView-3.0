@@ -5,7 +5,7 @@ Tiny picture viewer application that always stays on top and actually makes tran
 
 I have no idea how and why half of this works. I do not know if this works outside of Windows
 
-The way the transparency works is it searches for #000000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in black.
+The way the transparency works is it searches for #010000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in #010000 (just "black", aka #000000 doesn't work because titlebar is also considered to be "black").
 
 **Known issues:**
 ```
@@ -61,7 +61,7 @@ Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCapt
 python fix_black.py [filename]
 ```
 
-Because transparency works the way it does, this program helps fix the black pixels in png images that shouldn't be transparent (changes all pixels with #000000 to #000001). Uses [numpy](https://pypi.org/project/numpy/) and [Pillow](https://pypi.org/project/Pillow/)
+Because transparency works the way it does, this program helps fix the black pixels in png images that shouldn't be transparent (changes all pixels with #010000 to #000000). Uses [numpy](https://pypi.org/project/numpy/) and [Pillow](https://pypi.org/project/Pillow/)
 
 **Building and modifying**
 
