@@ -10,15 +10,6 @@
 // Licence: CC0
 //
 
-//
-// Copyright
-//
-// TPNGImage Copyright (c) Gustavo Huffenbacher Daud
-//    http://pngdelphi.sourceforge.net/
-//
-// TGIFImage Copyright (c) Finn Tolderlund
-//    http://finn.mobilixnet.dk/delphi/
-//
 unit UMain;
 
 interface
@@ -26,7 +17,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Jpeg,
   ExtCtrls, Menus, ExtDlgs, IniFiles, ShellApi, Shlobj, ActiveX, StdCtrls,
-  PNGImage, GIFImage;
+  PNGImage, GIFImg;
 
 const
   WS_EX_LAYERED = $80000;
@@ -254,7 +245,7 @@ var
   ExtName     : String;
   PngImg      : TPngImage;
   JpegImg     : TJpegImage;
-  GifImg      : TGifImage;
+  GifImg      : TGIFImage;
 begin
   try
     ImgView.FreeImage;
@@ -351,12 +342,12 @@ begin
     Self.Caption := '';
   end;
 
-  //ClientHeight := 85;
-  //ClientWidth  := 105;
   PercentSize:= 100;
   VFlip_act:=False;
   HFlip_act:=False;
   NoDragging:=False;
+  GIFImageDefaultAnimate := True;
+  GIFImageDefaultTransparent := True;
 
   CmdLineStr := GetCommandLine;
   if (CmdLineStr = nil) then begin
