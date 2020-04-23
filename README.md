@@ -1,7 +1,7 @@
 # QuickView-2.8-modified
 Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
 
-Tiny picture viewer application that always stays on top and actually makes transparent regions of images (as well as any pixel with #000000 color) transparent and clickthrough. Similar to [cthrough](http://cthruview.sourceforge.net/) but the actual visible image parts aren't clickthrough and you dont need an extra window open to configure the options.
+Tiny picture viewer application that always stays on top and actually makes transparent regions of images (as well as any pixel with #000000 color) transparent and clickthrough. Similar to [cthrough](http://cthruview.sourceforge.net/) but the actual visible image parts aren't clickthrough and you dont need an extra window open to configure the options (nor does it choke your ram).
 
 I have no idea how and why half of this works. 
 
