@@ -5,7 +5,7 @@ Tiny picture viewer application that always stays on top and actually makes tran
 
 I have no idea how and why half of this works. I do not know if this works outside of Windows
 
-The way the transparency works is it searches for #000000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in black.
+The way the transparency works is it searches for #010000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in black.
 
 **Known issues:**
 ```
