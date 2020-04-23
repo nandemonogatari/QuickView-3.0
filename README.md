@@ -1,7 +1,10 @@
 # QuickView-3.0
 Tiny picture viewer application that always stays on top with transparency support.
+
 Easy to use, portable and very fast.
+
 Supported .bmp, .jpg, .gif and .png.
+
 Makes transparent regions of images actually transparent and clickthrough.
 
 Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
