@@ -9,7 +9,7 @@ Makes transparent regions of images actually transparent and clickthrough.
 
 Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
 
-Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that this one barely uses up any resources, nor do you need an extra window open to configure it. Unlike cthruview the actual visible image parts aren't clickthrough though. Only thing cthrough has that this doesn't is rotation (for now).
+Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that this one barely uses up any resources, nor do you need an extra window open to configure it (nor having java installed...). Unlike cthruview the actual visible image parts aren't clickthrough though.
 
 **Known issues:**
 ```
@@ -17,7 +17,7 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
 - Resizing sometimes deforms the image.
 ```
 
-Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCaption=1):
+Example for Transparent PNG with no borders (Transparency=1, HideCaption=1):
 
 ![Screenshot](/screenshot.png)
 
