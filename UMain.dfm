@@ -4,16 +4,16 @@ object FMain: TFMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'QuickView'
-  ClientHeight = 161
-  ClientWidth = 238
-  Color = clNone
-  TransparentColor = True
+  ClientHeight = 106
+  ClientWidth = 135
+  Color = clBlack
+  TransparentColorValue = 1
   ParentFont = True
   FormStyle = fsStayOnTop
   KeyPreview = True
   OldCreateOrder = False
   PopupMenu = RMenu
-  Position = poDefault
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnMouseDown = FormMouseDown
@@ -81,6 +81,18 @@ object FMain: TFMain
     object TransMenu: TMenuItem
       Caption = '&Transparent...'
       OnClick = TransMenuClick
+    end
+    object VFlip: TMenuItem
+      Caption = '&Vertical Flip'
+      OnClick = VFlipClick
+    end
+    object HFlip: TMenuItem
+      Caption = '&Horizontal Flip'
+      OnClick = HFlipClick
+    end
+    object Pin: TMenuItem
+      Caption = '&Pin'
+      OnClick = PinClick
     end
     object ExitMenu: TMenuItem
       Caption = 'E&xit'

@@ -40,6 +40,9 @@ type
     ExitMenu: TMenuItem;
     OpenBmpDlg: TOpenPictureDialog;
     TransMenu: TMenuItem;
+    VFlip: TMenuItem;
+    HFlip: TMenuItem;
+    Pin: TMenuITem;
     PercentMenu: TMenuItem;
     NewWinItem: TMenuItem;
     ViewMenu: TMenuItem;
@@ -57,6 +60,9 @@ type
     procedure FileMenuClick(Sender: TObject);
     procedure TransMenuClick(Sender: TObject);
     procedure PercentMenuClick(Sender: TObject);
+    procedure VFlipClick(Sender: TObject);
+    procedure HFlipClick(Sender: TObject);
+    procedure PinClick(Sender: TObject);
     procedure PercentUpdate();
     procedure NewWinItemClick(Sender: TObject);
     procedure PercentClick(Sender: TObject);
@@ -106,6 +112,9 @@ var
   DLLWnd  : THandle;
   SetLayeredWindowAttributes :function(hwnd:HWND;crKey:DWORD;bAlpha:Byte;dwFlags:DWORD):Integer;stdcall;
   PercentSize: integer;
+  VFlip_act: Bool;
+  HFlip_act: Bool;
+  NoDragging: Bool;
 
 implementation
 
@@ -215,8 +224,8 @@ var
 begin
   Profile := TIniFile.Create(fIniFileName);
   with Profile do begin
-    fBackGround := ReadString('Main', 'Background', '');
-    fIcon := ReadString('Main', 'Icon', '');
+    fBackGround := ReadString('Main', 'Background', 'sample.bmp');
+    fIcon := ReadString('Main', 'Icon', 'QuickView.ico');
     fTitle := ReadString('Main', 'Title', 'QuickView');
     fHideCaption := ReadBool('Main', 'HideCaption', False);
     if fHideCaption then begin
@@ -224,8 +233,9 @@ begin
     end;
     fHideTitle := ReadBool('Main', 'NoTitle', False);
     fHideFileName := ReadBool('Main', 'NoPictureName', False);
-    fHideTaskbar := ReadBool('Main', 'NoTaskbarTitle', False);
+    Application.MainFormOnTaskbar := ReadBool('Main', 'NoTaskbarTitle', False);
     fDisableMinimize := ReadBool('Main', 'DisableMinimize', False);
+    Self.TransparentColor := ReadBool('Main', 'Transparency', False);
     if fDisableMinimize then begin
       Self.BorderIcons := Self.BorderIcons - [biMinimize];
     end;
@@ -320,10 +330,6 @@ begin
 
   ReadProperties;
 
-  if (fHideTaskbar) then begin
-    SetWindowLong(Application.Handle, GWL_EXSTYLE, GetWindowLong(Application.Handle, GWL_EXSTYLE) or WS_EX_TOOLWINDOW);
-  end;
-
   fSS_Dir  := '';
   fSS_Handle := INVALID_HANDLE_VALUE;
   ImgView := TBitmap.Create;
@@ -345,9 +351,12 @@ begin
     Self.Caption := '';
   end;
 
-  ClientHeight := 85;
-  ClientWidth  := 105;
+  //ClientHeight := 85;
+  //ClientWidth  := 105;
   PercentSize:= 100;
+  VFlip_act:=False;
+  HFlip_act:=False;
+  NoDragging:=False;
 
   CmdLineStr := GetCommandLine;
   if (CmdLineStr = nil) then begin
@@ -437,7 +446,7 @@ begin
   ClientHeight := ImgView.Height;
   ClientWidth  := ImgView.Width;
   PercentSize:= 100;
-  //FormPaint(nil);
+  PercentUpdate();
 end;
 
 //Unused tbh
@@ -535,21 +544,55 @@ begin
   ShellExecute(GetDesktopWindow(), nil, PChar(Application.ExeName), PChar(FullName), PChar(ExtractFileDir(Application.ExeName)), SW_SHOWNORMAL);
 end;
 
+procedure TFMain.VFlipClick(Sender: TObject);
+begin
+  VFlip_act:= not VFlip_act;
+  PercentUpdate();
+end;
+
+procedure TFMain.HFlipClick(Sender: TObject);
+begin
+  HFlip_act:= not HFlip_act;
+  PercentUpdate();
+end;
+
 procedure TFMain.PercentUpdate();
 var
-  Rect  : TRect;
+  //Rect  : TRect;
+  mRect, nRect: TRect;
 begin
-  ClientHeight := (ImgView.Height * PercentSize) div 100;
-  ClientWidth  := (ImgView.Width  * PercentSize) div 100;
-  Rect := GetClientRect;
   if (ImgView.Empty) then begin
-    Canvas.Brush.Color := clAppWorkSpace;
-    Canvas.FillRect(Rect);
+    ClientHeight := 105;
+    ClientWidth  := 105;
   end
   else begin
-    canvas.brush.color:=clnone;
+    ClientHeight := (ImgView.Height * PercentSize) div 100;
+    ClientWidth  := (ImgView.Width  * PercentSize) div 100;
+  end;
+  //Rect := GetClientRect;
+  mRect := GetClientRect;
+  nRect := GetClientRect;
+  if (ImgView.Empty) then begin
+    Canvas.Brush.Color := clWhite;
+    Canvas.FillRect(mRect);
+  end
+  else begin
+    canvas.brush.color:=$00000001;
     Canvas.fillrect(Canvas.ClipRect);
-    Canvas.StretchDraw(Rect, ImgView);
+    mRect:= rect(0, 0, ClientWidth, ClientHeight);
+    Canvas.StretchDraw(mRect, ImgView);
+    if VFlip_act and not HFlip_act then begin
+      nRect:=rect(0, ClientHeight-1, ClientWidth-1, 0); // Vertical flip
+      Canvas.CopyRect(mRect, Canvas, nRect);
+    end
+    else if HFlip_act and not VFlip_act then begin
+      nRect:=rect(ClientWidth-1, 0, 0, ClientHeight-1); // Horizontal flip
+      Canvas.CopyRect(mRect, Canvas, nRect);
+    end
+    else if Hflip_act and VFlip_act then begin
+      nRect:=rect(ClientWidth-1, ClientHeight-1, 0, 0); // Both flip
+      Canvas.CopyRect(mRect, Canvas, nRect);
+    end;
   end;
 end;
 
@@ -559,39 +602,20 @@ var
   Rect  : TRect;
 begin
   if (Sender = nil) then Exit;
-  if (ImgView.Empty) then begin
-    ClientHeight := 105;
-    ClientWidth  := 105;
-  end
-  else begin
-    if (TMenuItem(Sender).Tag >= 100) then begin
-      ClientHeight := ImgView.Height * (TMenuItem(Sender).Tag div 100);
-      ClientWidth  := ImgView.Width  * (TMenuItem(Sender).Tag div 100);
-    end
-    else begin
-      ClientHeight := (ImgView.Height * TMenuItem(Sender).Tag) div 100;
-      ClientWidth  := (ImgView.Width  * TMenuItem(Sender).Tag) div 100;
-    end;
-  end;
+  PercentSize := TMenuItem(Sender).Tag;
+  PercentUpdate();
   TMenuItem(Sender).Checked := True;
-  Rect := GetClientRect;
-  if (ImgView.Empty) then begin
-    Canvas.Brush.Color := clAppWorkSpace;
-    Canvas.FillRect(Rect);
-  end
-  else begin
-    //canvas.pen.color:=clwhite;
-    canvas.brush.color:=clnone;
-    //canvas.Brush.Style:=bsclear;
-    Canvas.fillrect(Canvas.ClipRect);
-    Canvas.StretchDraw(Rect, ImgView);
-  end;
+end;
+
+procedure TFMain.PinClick(Sender: TObject);
+begin
+  NoDragging:= not NoDragging;
 end;
 
 procedure TFMain.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  if fHideCaption = False then Exit;
+  if NoDragging then Exit;
   fXPos := X;
   fYPos := Y;
   fMouseDown := True;
@@ -600,7 +624,7 @@ end;
 procedure TFMain.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if fHideCaption = False then Exit;
+  if NoDragging then Exit;
   if (ssLeft in Shift) and ((fXPos <> X) or (fYPos <> Y)) and fMouseDown then begin
     ReleaseCapture;
     SendMessage(Handle, WM_SYSCOMMAND, SC_MOVE or 2, MakeLong(X, Y));
