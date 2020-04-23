@@ -18,14 +18,14 @@ Example for Transparent PNG with HideCaption=1:
 ![Screenshot](/screenshot.png)
 
 
-___Usage___
+**Usage**
 ```
   1. Picture file (.bmp, .jpg, .gif, .png) drag and drop to this program.
   2. Select the [Open...] menu item from right click pulldown menu.
   3. Give picture file name from command line argument.
      e.g.  > QuickView.exe E:\pic\foo.png
 ```
-___Right click pulldown menu___
+**Right click pulldown menu**
 ```
   1. [New Window...]   (ctrl+N)
      Open picture file to new window.
@@ -40,7 +40,7 @@ ___Right click pulldown menu___
   5. [Exit]            (Esc)
      Quit the program.
 ```
-___Initialize file (QuickView.ini)___
+**Initialize file (QuickView.ini)**
 ```
   Background - Set default background picture.(only BMP file)
   Icon - Set application icon.
@@ -51,6 +51,6 @@ ___Initialize file (QuickView.ini)___
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
 ```
-___License___
+**License**
 
   [Creative Commons Zero(CC0)](http://creativecommons.org/publicdomain/zero/1.0/)
