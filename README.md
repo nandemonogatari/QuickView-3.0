@@ -52,7 +52,8 @@ Example for Transparent PNG with HideCaption=1:
   DisableMinimize - Set '1' to disable minimize button on titlebar.
 ```
 
-#**Building and modifying**
+**Building and modifying**
+
 If you wanna build and or edit yourself i've been using the [Delphi IDE](https://www.embarcadero.com/products/delphi/starter). Just open the .dproj files with that.
 
 **License**
