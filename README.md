@@ -9,8 +9,8 @@ The way the transparency works is it searches for #000000 pixels and makes those
 
 Known issues:
 ```
-- Titlebar is fucked i still have to fix that, main idea is to use it with HideCaption=1 aka no Titlebar (see init file options below).
-- GIF doesn't work properly yet
+- Titlebar only clickable for the leftmost region i still have to fix that, main idea is to use it with HideCaption=1 aka no Titlebar (see init file options below).
+- GIF doesn't work properly yet.
 ```
 
 Example for Transparent PNG with HideCaption=1:
@@ -63,10 +63,3 @@ Copyright
 
   TGIFImage Copyright (c) Finn Tolderlund
      http://finn.mobilixnet.dk/delphi/
-
-ChangeLog
-
-  1.0 - 16.07.2009
-     Initial Release.
-
-  2.0 - 08.01.2010
