@@ -52,6 +52,10 @@ Example for Transparent PNG with HideCaption=1:
   DisableMinimize - Set '1' to disable minimize button on titlebar.
 ```
 
+**fix_black.py**
+
+Because transparency works the way it does, this program helps fix the black pixels in png images that shouldn't be transparent (changes all pixels with #000000 to #000001). Uses [numpy](https://pypi.org/project/numpy/) and [Pillow](https://pypi.org/project/Pillow/)
+
 **Building and modifying**
 
 If you wanna build and or edit it yourself i've been using the [Delphi IDE](https://www.embarcadero.com/products/delphi/starter). Just open the .dproj files with that.
