@@ -53,6 +53,9 @@ Example for Transparent PNG with HideCaption=1:
 ```
 
 **fix_black.py**
+```
+python fix_black.py [filename]
+```
 
 Because transparency works the way it does, this program helps fix the black pixels in png images that shouldn't be transparent (changes all pixels with #000000 to #000001). Uses [numpy](https://pypi.org/project/numpy/) and [Pillow](https://pypi.org/project/Pillow/)
 
