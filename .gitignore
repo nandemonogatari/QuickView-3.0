@@ -7,3 +7,4 @@ QuickView.dproj.local
 QuickView.identcache
 QuickView.res
 UMain.dcu
+make_rel.sh
