@@ -1,5 +1,7 @@
 # QuickView-2.8-modified
-Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more
+Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
+
+I have no idea how and why half of this works but it kinda works i guess. Titlebar is fucked i still have to fix that but main idea is to use it with HideCaption=1 aka no Titlebar (see init file options below).
 
 Example for Transparent PNG with HideCaption=1:
 
