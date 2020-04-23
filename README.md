@@ -1,12 +1,10 @@
 # QuickView2.8-modified
-Modification of QuickView2.8 by Jundai to support transparent PNG files and more
+Modification of [QuickView2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more
 
 Example for Transparent PNG with HideCaption=1:
 
 ![Screenshot](/screenshot.png)
 
-
-Original: https://www.deviantart.com/jundai/art/QuickView-129693435
 
   This is a tiny picture viewer application.
   Easy to use.
