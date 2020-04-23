@@ -1,21 +1,30 @@
-# QuickView-2.8-modified
+# QuickView-3.0
+Tiny picture viewer application that always stays on top with transparency support.
+
+Easy to use, portable and very fast.
+
+Supported .bmp, .jpg, .gif and .png.
+
+Makes transparent regions of images actually transparent and clickthrough.
+
 Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
 
-Tiny picture viewer application that always stays on top and actually makes transparent regions of images (as well as any pixel with #010000 color) transparent and clickthrough. Similar to [cthrough](http://cthruview.sourceforge.net/) but the actual visible image parts aren't clickthrough and you dont need an extra window open to configure the options (nor does it choke your ram).
-
-I have no idea how and why half of this works. I do not know if this works outside of Windows
-
-The way the transparency works is it searches for #010000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent in #010000 (just "black", aka #000000 doesn't work because titlebar is also considered to be "black").
+Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that this one barely uses up any resources, nor do you need an extra window open to configure it. Unlike cthruview the actual visible image parts aren't clickthrough though. Only thing cthrough has that this doesn't is rotation (for now).
 
 **Known issues:**
 ```
 - GIF doesn't work properly yet.
+- Resizing sometimes deforms the image.
 ```
 
 Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCaption=1):
 
 ![Screenshot](/screenshot.png)
 
+**Install**
+```
+  Download the Release folder (you only really need the .exe and .ini).
+```
 
 **Usage**
 ```
@@ -39,11 +48,11 @@ Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCapt
   5. Vertical Flip
   6. Horizontal Flip
   7. Pin
-     Locks it in place so it cant be moved (can still be moved via title bar).
+     Locks it in place so it cant be moved (can still be moved via title bar if enabled).
   8. [Exit]            (Esc)
      Quit the program.
 ```
-**Initialize file (QuickView.ini)**
+**QuickView.ini**
 ```
   Background - Set default background picture.(only BMP file)
   Icon - Set application icon.
@@ -56,12 +65,14 @@ Example for Transparent PNG (the duck) with no borders (Transparency=1, HideCapt
   Transparency - Set '1' to enable transparent Window.
 ```
 
+The way the transparency works is it searches for #010000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent with #010000 (has to be #010000).
+
 **fix_black.py**
 ```
 python fix_black.py [filename]
 ```
 
-Because transparency works the way it does, this program helps fix the black pixels in png images that shouldn't be transparent (changes all pixels with #010000 to #000000). Uses [numpy](https://pypi.org/project/numpy/) and [Pillow](https://pypi.org/project/Pillow/)
+Because transparency works the way it does, this program helps fix the black pixels in png images that shouldn't be transparent (changes all pixels with #010000 to #000000). Needs [numpy](https://pypi.org/project/numpy/) and [Pillow](https://pypi.org/project/Pillow/) in Python (I'm using 3.6 but it shouldn't matter too much).
 
 **Building and modifying**
 
