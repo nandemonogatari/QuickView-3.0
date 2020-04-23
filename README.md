@@ -19,7 +19,7 @@ Usage
      e.g.  > QuickView.exe E:\pic\foo.png
 
 Right click pulldown menu
-
+```
   1. [New Window...]   (ctrl+N)
      Open picture file to new window.
   2. [Open...]         (ctrl+O)
@@ -32,9 +32,9 @@ Right click pulldown menu
      Transparent mode. (0-255)
   5. [Exit]            (Esc)
      Quit the program.
-
+```
 Initialize file (QuickView.ini)
-
+```
   Background - Set default background picture.(only BMP file)
   Icon - Set application icon.
   Title - Set window title.
@@ -43,7 +43,7 @@ Initialize file (QuickView.ini)
   NoPictureName - Set '1' to only show Title on titlebar.
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
-
+```
 License
 
   Creative Commons Zero(CC0)
