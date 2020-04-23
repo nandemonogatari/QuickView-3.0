@@ -13,7 +13,7 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
 
 **Known issues:**
 ```
-- GIF doesn't work properly yet.
+- GIF animation doesn't work yet.
 - Resizing sometimes deforms the image.
 ```
 
