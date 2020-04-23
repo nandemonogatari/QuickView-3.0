@@ -3,8 +3,6 @@ Modification of QuickView2.8 by Jundai to support transparent PNG files and more
 
 Original: https://www.deviantart.com/jundai/art/QuickView-129693435
 
-QuickView v3.0
-
   This is a tiny picture viewer application.
   Easy to use.
   Supported .bmp,.jpg,.gif,.png picture format.
