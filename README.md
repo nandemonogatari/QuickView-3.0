@@ -22,7 +22,7 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
 
 **Install**
 
-  [Download the .zip](https://mega.nz/file/9uBBBYwD#rta5oLu96tLQUA8P3ZETV9ye2epxJ9lfyet9B0RAeWI) (you only really need the .exe and .ini).
+  [Download the .zip](https://mega.nz/folder/NrRnkYjA#EPq0wsiiiAfyBAWsmA5ynA) (you only really need the .exe and .ini).
 
 **Usage**
 ```
