@@ -17,9 +17,8 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
 - Resizing sometimes deforms the image.
 ```
 
-Example for Transparent PNG with no borders (Transparency=1, HideCaption=1):
+![sample](/Release/sample.gif)
 
-![Screenshot](/screenshot.png)
 
 **Install**
 ```
