@@ -17,13 +17,12 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
 - Resizing sometimes deforms the image.
 ```
 
-![sample](/Release/sample.gif)
+![sample](/sample.gif)
 
 
 **Install**
-```
-  Download the Release folder (you only really need the .exe and .ini).
-```
+
+  [Download the .zip](https://mega.nz/file/9uBBBYwD#rta5oLu96tLQUA8P3ZETV9ye2epxJ9lfyet9B0RAeWI) (you only really need the .exe and .ini).
 
 **Usage**
 ```
