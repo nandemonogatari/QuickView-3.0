@@ -5,15 +5,15 @@ Easy to use, portable and very fast.
 
 Supported .bmp, .jpg, .gif and .png.
 
-Makes transparent regions of images actually transparent and clickthrough.
+Makes transparent regions of images actually transparent and clickthrough (even animated gifs!).
 
-Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparent PNG files and more.
+Modification of [QuickView-2.8 by Jundai](https://www.deviantart.com/jundai/art/QuickView-129693435) to support transparency, animated gifs and more.
 
 Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that this one barely uses up any resources, nor do you need an extra window open to configure it (nor having java installed...). Unlike cthruview the actual visible image parts aren't clickthrough though.
 
 **Known issues:**
 ```
-- GIF animation doesn't work yet.
+- Resizing gifs to < 100% might introduce artifacts.
 - Resizing sometimes deforms the image.
 ```
 
@@ -46,7 +46,9 @@ Example for Transparent PNG with no borders (Transparency=1, HideCaption=1):
   4. [Transparent...]
      Transparent mode. (0-255)
   5. Vertical Flip
+    (Doesn't work for gifs)
   6. Horizontal Flip
+    (Doesn't work for gifs)
   7. Pin
      Locks it in place so it cant be moved (can still be moved via title bar if enabled).
   8. [Exit]            (Esc)
