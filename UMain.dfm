@@ -22,6 +22,23 @@ object FMain: TFMain
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object ImageAnimate: TImage
+    Left = 0
+    Top = 0
+    Width = 135
+    Height = 106
+    Align = alClient
+    Center = True
+    Proportional = True
+    Transparent = True
+    Visible = False
+    OnMouseDown = FormMouseDown
+    OnMouseMove = FormMouseMove
+    ExplicitLeft = 3
+    ExplicitTop = 3
+    ExplicitWidth = 106
+    ExplicitHeight = 135
+  end
   object RMenu: TPopupMenu
     Top = 1
     object NewWinItem: TMenuItem

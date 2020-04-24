@@ -1,4 +1,4 @@
-//
+﻿//
 // QuickView - simple picture viewer.
 //
 // version 3.0 2020/04/23 nandemonogatari(https://github.com/nandemonogatari)
@@ -43,6 +43,7 @@ type
     View075: TMenuItem;
     View025: TMenuItem;
     View010: TMenuItem;
+    ImageAnimate: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -85,6 +86,7 @@ type
     fHideFileName     : Boolean;
     fHideTaskbar      : Boolean;
     fDisableMinimize  : Boolean;
+    GifFlag           : Boolean;
 
     procedure ReadProperties;
     function LoadFile(FileName: String): Boolean;
@@ -248,7 +250,14 @@ var
   GifImg      : TGIFImage;
 begin
   try
+    //dont wanna have it flipped on new img
+    HFlip_act:=False;
+    VFlip_act:=False;
     ImgView.FreeImage;
+    GifFlag:=False;
+    PercentSize:=100;
+    Self.AlphaBlendValue := 255;
+    ImageAnimate.Visible:=False;
     ExtName := ExtractFileExt(FileName);
     ExtName := LowerCase(ExtName);
     if (Pos('png', ExtName) <> 0) then begin
@@ -267,7 +276,12 @@ begin
     else if (Pos('gif', ExtName) <> 0) then begin
       GifImg := TGifImage.Create;
       GifImg.LoadFromFile(FileName);
-      ImgView.Assign(GifImg);
+      GifImg.OptimizeColorMap;
+      ImageAnimate.Visible:=True;
+      ImageAnimate.Picture.Assign(GifImg);
+      ImageAnimate.Stretch:=True;
+      DoubleBuffered :=True;
+      GifFlag:=True;
       GifImg.Free;
     end
     else begin
@@ -348,6 +362,7 @@ begin
   NoDragging:=False;
   GIFImageDefaultAnimate := True;
   GIFImageDefaultTransparent := True;
+  GifFlag:=False;
 
   CmdLineStr := GetCommandLine;
   if (CmdLineStr = nil) then begin
@@ -429,13 +444,19 @@ end;
 
 procedure TFMain.FormShow(Sender: TObject);
 begin
-  if (ImgView.Empty) then begin
+  if (ImgView.Empty and not GifFlag) then begin
     ClientHeight := 105;
     ClientWidth  := 105;
     Exit;
+  end
+  else if GifFlag then begin
+    ClientHeight := ImageAnimate.Picture.Height;
+    ClientWidth  := ImageAnimate.Picture.Width;
+  end
+  else begin
+    ClientHeight := ImgView.Height;
+    ClientWidth  := ImgView.Width;
   end;
-  ClientHeight := ImgView.Height;
-  ClientWidth  := ImgView.Width;
   PercentSize:= 100;
   PercentUpdate();
 end;
@@ -512,7 +533,12 @@ var
   InputStr    : String;
   InputDigit  : Integer;
 begin
-  PercentSize := (clientHeight div ImgView.Height) * 100;
+  if GifFlag then begin
+    PercentSize := (clientHeight * 100) div ImageAnimate.Picture.Height;
+  end
+  else begin
+    PercentSize := (clientWidth * 100) div ImgView.Width;
+  end;
   InputStr := InputBox(Self.Caption, 'size in %', IntToStr(PercentSize));
   InputDigit := StrToInt(InputStr);
   PercentSize := InputDigit;
@@ -537,14 +563,18 @@ end;
 
 procedure TFMain.VFlipClick(Sender: TObject);
 begin
-  VFlip_act:= not VFlip_act;
-  PercentUpdate();
+  if not GifFlag then begin
+    VFlip_act:= not VFlip_act;
+    PercentUpdate();
+  end;
 end;
 
 procedure TFMain.HFlipClick(Sender: TObject);
 begin
-  HFlip_act:= not HFlip_act;
-  PercentUpdate();
+  if not GifFlag then begin
+    HFlip_act:= not HFlip_act;
+    PercentUpdate();
+  end;
 end;
 
 procedure TFMain.PercentUpdate();
@@ -552,22 +582,26 @@ var
   //Rect  : TRect;
   mRect, nRect: TRect;
 begin
-  if (ImgView.Empty) then begin
+  if (ImgView.Empty and not GifFlag) then begin
     ClientHeight := 105;
     ClientWidth  := 105;
   end
+  else if GifFlag then begin
+    ClientHeight := (ImageAnimate.Picture.Height * PercentSize) div 100;
+    ClientWidth  := (ImageAnimate.Picture.Width * PercentSize) div 100;
+  end
   else begin
     ClientHeight := (ImgView.Height * PercentSize) div 100;
-    ClientWidth  := (ImgView.Width  * PercentSize) div 100;
+    ClientWidth  := (ImgView.Width * PercentSize) div 100;
   end;
   //Rect := GetClientRect;
   mRect := GetClientRect;
   nRect := GetClientRect;
-  if (ImgView.Empty) then begin
+  if (ImgView.Empty and not GifFlag) then begin
     Canvas.Brush.Color := clWhite;
     Canvas.FillRect(mRect);
   end
-  else begin
+  else if not GifFlag then begin
     canvas.brush.color:=$00000001;
     Canvas.fillrect(Canvas.ClipRect);
     mRect:= rect(0, 0, ClientWidth, ClientHeight);
@@ -584,6 +618,10 @@ begin
       nRect:=rect(ClientWidth-1, ClientHeight-1, 0, 0); // Both flip
       Canvas.CopyRect(mRect, Canvas, nRect);
     end;
+  end
+  else begin
+    canvas.brush.color:=$00000001;
+    Canvas.fillrect(Canvas.ClipRect);
   end;
 end;
 
