@@ -13,7 +13,7 @@ object FMain: TFMain
   KeyPreview = True
   OldCreateOrder = False
   PopupMenu = RMenu
-  Position = poScreenCenter
+  Position = poDefault
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnMouseDown = FormMouseDown

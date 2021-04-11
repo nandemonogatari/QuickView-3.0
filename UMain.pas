@@ -87,6 +87,7 @@ type
     fHideTaskbar      : Boolean;
     fDisableMinimize  : Boolean;
     GifFlag           : Boolean;
+    fNoDragging       : Boolean;
 
     procedure ReadProperties;
     function LoadFile(FileName: String): Boolean;
@@ -232,6 +233,7 @@ begin
     if fDisableMinimize then begin
       Self.BorderIcons := Self.BorderIcons - [biMinimize];
     end;
+    fNoDragging := ReadBool('Main', 'Pin', False);
   end;
   Profile.Free;
   if not(FileExists(fBackGround)) then begin
@@ -424,10 +426,8 @@ begin
   end;
 
   FullName := '';
-  for Idx := 1 to CmdLineLen do begin
-    if (CmdLineStr[Idx] = '"') then Continue;
-    FullName := FullName + Char(CmdLineStr[Idx]);
-  end;
+  FullName := ParamStr(1);
+
   LoadFile(FullName);
 end;
 
@@ -638,13 +638,13 @@ end;
 
 procedure TFMain.PinClick(Sender: TObject);
 begin
-  NoDragging:= not NoDragging;
+  fNoDragging:= not fNoDragging;
 end;
 
 procedure TFMain.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  if NoDragging then Exit;
+  if fNoDragging then Exit;
   fXPos := X;
   fYPos := Y;
   fMouseDown := True;
@@ -653,7 +653,7 @@ end;
 procedure TFMain.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if NoDragging then Exit;
+  if fNoDragging then Exit;
   if (ssLeft in Shift) and ((fXPos <> X) or (fYPos <> Y)) and fMouseDown then begin
     ReleaseCapture;
     SendMessage(Handle, WM_SYSCOMMAND, SC_MOVE or 2, MakeLong(X, Y));
