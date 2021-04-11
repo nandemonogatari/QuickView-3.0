@@ -1,4 +1,4 @@
-# QuickView-3.0
+# QuickView-3.0.1
 Tiny picture viewer application that always stays on top with transparency support.
 
 Easy to use, portable and very fast.
@@ -63,6 +63,7 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
   NoTaskbarTitle - Set '1' to hide taskbar button.
   DisableMinimize - Set '1' to disable minimize button on titlebar.
   Transparency - Set '1' to enable transparent Window.
+  Pin - Set '1' to make window unmovable (can be disabled afterwards in menu)
 ```
 
 The way the transparency works is it searches for #010000 pixels and makes those transparent (transparent PNG regions included), so basically you can just color what you want to be transparent with #010000 (has to be #010000).
