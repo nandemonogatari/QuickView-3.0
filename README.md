@@ -22,7 +22,7 @@ Works similarly to [cthruview](http://cthruview.sourceforge.net/) except that th
 
 **Install**
 
-  [Download the .zip](https://mega.nz/folder/NrRnkYjA#EPq0wsiiiAfyBAWsmA5ynA) (you only really need the .exe and .ini).
+  [Download](https://github.com/nandemonogatari/QuickView-3.0/releases/tag/v3.0.1) and extract.
 
 **Usage**
 ```
